@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"strings"
 )
 
 func main() {
@@ -27,6 +28,19 @@ func max(a ...int) int {
 	}
 	return r
 }
+
+func maxIdx(a ...int) int {
+	r := a[0]
+	index := 0
+	for i := 0; i < len(a); i++ {
+		if r < a[i] {
+			r = a[i]
+			index = i
+		}
+	}
+	return index
+}
+
 func min(a ...int) int {
 	r := a[0]
 	for i := 0; i < len(a); i++ {
@@ -36,6 +50,19 @@ func min(a ...int) int {
 	}
 	return r
 }
+
+func minIdx(a ...int) int {
+	r := a[0]
+	index := 0
+	for i := 0; i < len(a); i++ {
+		if r > a[i] {
+			r = a[i]
+			index = i
+		}
+	}
+	return index
+}
+
 func sum(a []int) (r int) {
 	for i := range a {
 		r += a[i]
@@ -58,7 +85,7 @@ func NewScanner() func() string {
 	r.Split(bufio.ScanWords)
 	return func() string {
 		r.Scan()
-		return r.Text()
+		return strings.Fields(r.Text())
 	}
 }
 func nextString() string {
