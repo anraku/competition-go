@@ -13,9 +13,12 @@ func main() {
 	nextReader = NewScanner()
 	a := nextInt()
 	b := nextInt()
-	c := nextInt()
 
-	fmt.Printf("a = %d\nb = %d\nc = %d\n", a, b, c)
+	if a*b%2 == 0 {
+		fmt.Printf("Even")
+	} else {
+		fmt.Printf("Odd")
+	}
 }
 
 func max(a ...int) int {
