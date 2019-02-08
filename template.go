@@ -122,21 +122,6 @@ func nextFloat64() []float64 {
 
 // ------ 標準入力用の関数 ---------------------------------//
 
-// ------ ソートライブラリ ---------------------------------//
-type IntSorter []int
-
-func (s IntSorter) Len() int           { return len(s) }
-func (s IntSorter) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
-func (s IntSorter) Less(i, j int) bool { return s[i] < s[j] }
-
-type Float64Sorter []float64
-
-func (s Float64Sorter) Len() int           { return len(s) }
-func (s Float64Sorter) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
-func (s Float64Sorter) Less(i, j int) bool { return s[i] < s[j] }
-
-// ------ ソートライブラリ ---------------------------------//
-
 // ------ あまり使わない -----------------------------------//
 func nextInt64() []int64 {
 	var int64Array []int64
