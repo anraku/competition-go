@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"sort"
 	"strconv"
 	"strings"
 )
@@ -15,9 +14,7 @@ func main() {
 	nextReader = NewScanner()
 	line1 := nextInt()
 	line2 := nextInt()
-	sort.Sort(IntSorter(line2))
 	line3 := nextFloat64()
-	sort.Sort(Float64Sorter(line3))
 	x := line2
 
 	fmt.Printf("line1= %+v\nx = %+v\nline3=%+v\n", line1, x, line3)
@@ -128,9 +125,9 @@ func nextInt64() []int64 {
 	strArray := nextReader()
 	for _, v := range strArray {
 		i, _ := strconv.ParseInt(v, 10, 64)
-		intArray = append(intArray, i)
+		int64Array = append(int64Array, i)
 	}
-	return intArray
+	return int64Array
 }
 
 // ------ あまり使わない -----------------------------------//
