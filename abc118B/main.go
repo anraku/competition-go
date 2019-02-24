@@ -3,19 +3,46 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"strconv"
 	"strings"
 )
 
 func main() {
+	log.SetFlags(log.Lshortfile)
 	nextReader = NewScanner()
 	line1 := nextInt()
-	line2 := nextInt()
-	line3 := nextFloat64()
-	x := line2
+	N := line1[0] // 人数
+	//_ = line1[1] // 食べ物の種類
 
-	fmt.Printf("line1= %+v\nx = %+v\nline3=%+v\n", line1, x, line3)
+	var array [][]int
+	for i := 0; i < N; i++ {
+		line := nextInt()
+		array = append(array, line)
+	}
+
+	kindMap := make(map[int]int, 31)
+	for i := 0; i < len(array); i++ {
+		for j := 1; j < len(array[i]); j++ {
+			kindMap[array[i][j]]++
+		}
+	}
+
+	var result int
+	for _, v := range kindMap {
+		if v == N {
+			result++
+		}
+	}
+
+	fmt.Printf("%d\n", result)
+
+	//fmt.Printf("N: %+v\n", N)
+	//fmt.Printf("kindMap: %+v\n", kindMap)
+	//fmt.Printf("result: %+v\n", result)
+	//fmt.Printf("%+v\n", array)
+
 }
 
 // ------ Mathライブラリ ---------------------------------//

@@ -3,19 +3,50 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"strconv"
 	"strings"
 )
 
 func main() {
+	log.SetFlags(log.Lshortfile)
 	nextReader = NewScanner()
-	line1 := nextInt()
-	line2 := nextInt()
-	line3 := nextFloat64()
-	x := line2
+	str := nextString()[0]
+	words := []string{
+		"eraser",
+		"erase",
+		"dreamer",
+		"dream",
+	}
 
-	fmt.Printf("line1= %+v\nx = %+v\nline3=%+v\n", line1, x, line3)
+	for {
+		idx := -1
+		for _, w := range words {
+			idx = strings.LastIndex(str, w)
+			//fmt.Printf("index: %d\n", idx)
+			//fmt.Printf("len(w): %d\n", len(w))
+			//fmt.Printf("len(str): %d\n", len(str))
+			if idx == -1 {
+				continue
+			}
+			if idx+len(w) != len(str) {
+				idx = -1
+				continue
+			} else {
+				break
+			}
+		}
+		if idx == -1 {
+			fmt.Println("No")
+			return
+		}
+		str = str[:idx]
+		if len(str) == 0 {
+			fmt.Println("Yes")
+			return
+		}
+	}
 }
 
 // ------ Mathライブラリ ---------------------------------//

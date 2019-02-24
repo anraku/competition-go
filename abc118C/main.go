@@ -3,19 +3,38 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
 
 func main() {
 	nextReader = NewScanner()
-	line1 := nextInt()
-	line2 := nextInt()
-	line3 := nextFloat64()
-	x := line2
+	_ = nextInt()  //モンスターの数
+	a := nextInt() // 各モンスターの体力
 
-	fmt.Printf("line1= %+v\nx = %+v\nline3=%+v\n", line1, x, line3)
+	sort.Ints(a)
+
+	for i := 0; i < len(a)-1; i++ {
+		x := a[i]
+		y := a[i+1]
+		for x > 0 && y > 0 {
+			x, y = attack(x, y)
+		}
+		a[i+1] = int(math.Max(float64(x), float64(y)))
+	}
+
+	fmt.Printf("%d", a[len(a)-1])
+}
+
+func attack(x, y int) (int, int) {
+	if x < y {
+		return x, y % x
+	} else {
+		return x % y, y
+	}
 }
 
 // ------ Mathライブラリ ---------------------------------//
@@ -45,6 +64,16 @@ func min(a ...int) int {
 	r := a[0]
 	for i := 0; i < len(a); i++ {
 		if r > a[i] {
+			r = a[i]
+		}
+	}
+	return r
+}
+
+func minNonZero(a ...int) int {
+	r := math.MaxInt64
+	for i := 0; i < len(a); i++ {
+		if r > a[i] && a[i] > 0 {
 			r = a[i]
 		}
 	}
